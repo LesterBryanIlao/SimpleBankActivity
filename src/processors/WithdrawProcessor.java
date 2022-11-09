@@ -11,17 +11,18 @@ public class WithdrawProcessor {
 	private LedgerCsvWriter ledgerCsvWriter;
 
 	public WithdrawProcessor() {
-
+		ledgerCsvWriter = new LedgerCsvWriter();
 	}
+	
 
-	public WithdrawProcessor(Withdraw withdraw, BankAccount bankAccount, LedgerCsvWriter ledgerCsvWriter) {
+	public WithdrawProcessor(Withdraw withdraw, BankAccount bankAccount) {
 		this.withdraw = withdraw;
 		this.bankAccount = bankAccount;
-		this.ledgerCsvWriter = ledgerCsvWriter;
 	}
 
 	public void process() {
-		if (Validators.isValidDeposit(bankAccount.getBalance(), withdraw.getAmount())) {
+		if (Validators.isValidWithdraw(bankAccount.getBalance(), withdraw.getAmount())) {
+			
 			ledgerCsvWriter.write(withdraw.stringRecord());
 			bankAccount.setBalance(bankAccount.getBalance() - withdraw.getAmount());
 			System.out.println("Transaction Successful!!!\n");

@@ -36,26 +36,14 @@ public class Validators {
 	}
 
 	public static boolean isValidWithdraw(double balance, double withdrawAmount) {
-//        if (isMaximumTransaction(withdrawAmount) 
-//            & !containsDecimalValue(withdrawAmount) 
-//            & isValidAmount(withdrawAmount) 
-//            & isDivisibleBy100(withdrawAmount)
-//            & !isNotEnoughBalance(balance, withdrawAmount)) {
-//            return true;
-//        }
-//        return false;
-		return (isMaximumTransaction(withdrawAmount) & containsDecimalValue(withdrawAmount)
-				& isValidAmount(withdrawAmount) & isDivisibleBy100(withdrawAmount)
-				& isEnoughBalance(balance, withdrawAmount));
+
+		return (isMaximumTransaction(withdrawAmount) && containsDecimalValue(withdrawAmount)
+				&& isValidAmount(withdrawAmount) && isDivisibleBy100(withdrawAmount)
+				&& isEnoughBalance(balance, withdrawAmount));
 	}
 
 	public static boolean isValidDeposit(double balance, double depositAmount) {
-//        if (isMaximumTransaction(withdrawAmount) 
-//            & isValidAmount(withdrawAmount) ) {
-//            return true;
-//        }
-//        return false;
-		return (isMaximumTransaction(depositAmount) & isValidAmount(depositAmount));
+		return (isMaximumTransaction(depositAmount) && isValidAmount(depositAmount));
 	}
 
 }

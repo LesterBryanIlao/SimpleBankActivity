@@ -16,7 +16,6 @@ public class SimpleBankTester extends MenuOptions {
 
 		BankAccount bankAccount = new BankAccount("John", "Doe");
 
-		LedgerCsvWriter ledgerCsvWriter = new LedgerCsvWriter();
 		Statement statement = new Statement();
 		BalanceChecker balanceChecker = new BalanceChecker(statement);
 		WithdrawProcessor withdrawProcessor;
@@ -32,12 +31,12 @@ public class SimpleBankTester extends MenuOptions {
 				
 				if (choice == 1) {
 					Deposit deposit = new Deposit();
-					depositProcessor = new DepositProcessor(deposit, bankAccount, ledgerCsvWriter);
+					depositProcessor = new DepositProcessor(deposit, bankAccount);
 					depositProcessor.process();
 					
 				} else {
 					Withdraw withdraw = new Withdraw();
-					withdrawProcessor = new WithdrawProcessor(withdraw, bankAccount, ledgerCsvWriter);
+					withdrawProcessor = new WithdrawProcessor(withdraw, bankAccount);
 					withdrawProcessor.process();
 				}
 				
@@ -47,6 +46,7 @@ public class SimpleBankTester extends MenuOptions {
 				if (statement.getLedgerList().getList().isEmpty()) {
 					System.out.println("No recorded transaction.");
 				} else
+					statement = new Statement();
 					statement.print();
 				
 			} else if (choice == 4) {

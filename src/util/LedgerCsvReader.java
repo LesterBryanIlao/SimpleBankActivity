@@ -29,7 +29,6 @@ public class LedgerCsvReader {
 
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-
 				ledgerList.add(Double.parseDouble(line));
 			}
 
